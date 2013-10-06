@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Cloud implements ICloud {
 	static enum EnergyTypeEnum {
@@ -122,33 +125,41 @@ public class Cloud implements ICloud {
 
 	}
 
-	public interface CheckCloud {
+	/*public interface CheckCloud {
 		boolean test(S s);
-	}
-
+	}*/
+/*
 	public static class CheckOccupiedOrbitals implements CheckCloud {
 		@Override
 		public boolean test(S s) {
 			return s.occupied();
 		}
-	}
-
-	public void showCloud(CheckCloud tester) {
-
+	}*/
+@Override
+/*	public void showCloud(Predicate<S> tester) {
 		for (S s : ecloud) {
 			if (tester.test(s)) {
-				System.out.println("Electron map- n: "
-						+ s.getParent().getParent().getParent()
-								.getQuantNumber() + " l: "
-						+ s.getParent().getParent().getQuantNumber() + " m: "
-						+ s.getParent().getQuantNumber() + " s: "
-						+ s.getQuantNumber() + " tenant: " + s.e);
+				s.printinfo();
 			}
 		}
-
+	}*//*
+public void showCloud(Predicate<S> tester,Consumer<S> block) {
+	for (S s : ecloud) {
+		if (tester.test(s)) {
+			block.accept(s);
+		}
 	}
+}*/
+public void showCloud(Predicate<S> tester,Function<S,String>mapper,Consumer<String> block){
 
-	/*
+	for (S s : ecloud) {
+		if (tester.test(s)) {
+			String data=mapper.apply(s);
+			block.accept(data);
+		}
+	}
+}
+/*
 	 * public void showCloudPredicate(Predicate<S> tester) {
 	 * 
 	 * for (S s : ecloud) { if (tester.test(s)) {
@@ -166,4 +177,6 @@ public class Cloud implements ICloud {
 
 		return ecloud;
 	}
+
+
 }

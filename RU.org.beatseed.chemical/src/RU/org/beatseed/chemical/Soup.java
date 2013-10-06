@@ -23,7 +23,11 @@ public class Soup {
 		 * } });
 		 */
 
-		litiy.getCloud().showCloud((S s) -> s.occupied());
+		//litiy.getCloud().showCloud((S s) -> s.occupied());
+		//litiy.getCloud().showCloud((S s) -> s.occupied(), (S s)->s.printinfo());
+		//litiy.getCloud().showCloud( s -> s.occupied(), s->s.getAddress(), adr->System.out.println(adr));
+		//Atom.showCloud(litiy.getCloud().getCloud(), s -> s.occupied(), s->s.getAddress(), adr->System.out.println(adr));
+		litiy.getCloud().getCloud().stream().filter( s -> s.occupied()).map(s->s.getAddress()).forEach(adr->System.out.println(adr));
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

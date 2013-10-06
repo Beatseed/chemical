@@ -59,4 +59,20 @@ public class S extends QuantNumber<Double> implements IQuantNumber<Double> {
 		}
 		return 0;
 	}
+	public void printinfo(){
+		System.out.println("n: "
+				+ this.getParent().getParent().getParent()
+						.getQuantNumber() + " l: "
+				+ this.getParent().getParent().getQuantNumber() + " m: "
+				+ this.getParent().getQuantNumber() + " s: "
+				+ this.getQuantNumber() + " tenant: " + this.e);
+	}
+	public String getAddress(){
+		return "n: "
+				+ this.getParent().getParent().getParent()
+				.getQuantNumber() + " l: "
+		+ this.getParent().getParent().getQuantNumber() + " m: "
+		+ this.getParent().getQuantNumber() + " s: "
+		+ this.getQuantNumber() + " tenant: " + this.e;
+	}
 }

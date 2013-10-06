@@ -1,8 +1,11 @@
 package RU.org.beatseed.chemical.electron;
 
 import java.util.LinkedList;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
-import RU.org.beatseed.chemical.electron.Cloud.CheckCloud;
+
 
 public interface ICloud {
 
@@ -14,6 +17,7 @@ public interface ICloud {
 
 	public void showECloud();
 
-	void showCloud(CheckCloud tester);
+	void showCloud(Predicate<S> tester,Function<S,String>mapper,Consumer<String> block);
 
+	
 }

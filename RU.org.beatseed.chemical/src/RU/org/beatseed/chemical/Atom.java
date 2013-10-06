@@ -1,7 +1,13 @@
 package RU.org.beatseed.chemical;
 
+//import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 import RU.org.beatseed.chemical.electron.Cloud;
 import RU.org.beatseed.chemical.electron.ICloud;
+//import RU.org.beatseed.chemical.electron.S;
 
 public class Atom implements Comparable<Object> {
 
@@ -50,4 +56,26 @@ public class Atom implements Comparable<Object> {
 	public ICloud getCloud() {
 		return cloud;
 	}
+	
+	/*
+	public static void showCloud(List<S>roster,Predicate<S> tester,Function<S,String>mapper,Consumer<String> block){
+		for(S s:roster){
+			if (tester.test(s)) {
+				String data=mapper.apply(s);
+				block.accept(data);
+			}
+		}
+	}*/
+	public static <X, Y> void showCloud(
+		    Iterable<X> source,
+		    Predicate<X> tester,
+		    Function <X, Y> mapper,
+		    Consumer<Y> block) {
+		    for (X p : source) {
+		        if (tester.test(p)) {
+		            Y data = mapper.apply(p);
+		            block.accept(data);
+		        }
+		    }
+		}
 }
