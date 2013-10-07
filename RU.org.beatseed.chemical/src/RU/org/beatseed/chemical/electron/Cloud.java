@@ -7,21 +7,9 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
+import RU.org.beatseed.chemical.electron.S;
 public class Cloud implements ICloud {
-	static enum EnergyTypeEnum {
-		s, p, d, f
-	};
-
-	// количество орбиталей на каждом подуровне
-	static Map<EnergyTypeEnum, Integer> SublevelOrbitals = new HashMap<EnergyTypeEnum, Integer>();
-	static {
-		SublevelOrbitals.put(EnergyTypeEnum.s, 1);
-		SublevelOrbitals.put(EnergyTypeEnum.p, 3);
-		SublevelOrbitals.put(EnergyTypeEnum.d, 5);
-		SublevelOrbitals.put(EnergyTypeEnum.f, 7);
-	}
-
+	
 	protected LinkedList<N> elevels;
 	protected LinkedList<S> ecloud;
 
@@ -44,7 +32,7 @@ public class Cloud implements ICloud {
 
 	/*
 	 * заполнение электронного облака электронами numberOfElectrons - количество
-	 * электронов фтома согласно периодичекой таблицы (non-Javadoc)
+	 * электронов атома согласно периодичекой таблицы (non-Javadoc)
 	 * 
 	 * @see RU.org.beatseed.chemical.electron.ICloud#invade(int)
 	 */
@@ -96,14 +84,14 @@ public class Cloud implements ICloud {
 	 */
 	public void showEMap() {
 		for (N n : elevels) {
-			for (QuantNumber<?> l : n.childs) {
-				for (QuantNumber<?> m : l.childs) {
-					for (QuantNumber<?> s : m.childs) {
+			for (QuantNumber<?> l : n.getChilds()) {
+				for (QuantNumber<?> m : l.getChilds()) {
+					for (QuantNumber<?> s : m.getChilds()) {
 						System.out.println("Electron map- n: "
 								+ n.getQuantNumber() + " l: "
 								+ l.getQuantNumber() + " m: "
 								+ m.getQuantNumber() + " s: "
-								+ m.getQuantNumber() + ((S) s).e);
+								+ m.getQuantNumber() + ((S) s).getE());
 
 					}
 				}
@@ -113,14 +101,14 @@ public class Cloud implements ICloud {
 		System.out.println("");
 	}
 
-	public void showECloud() {
+	public void showCloud() {
 
 		for (S s : ecloud) {
 			System.out.println("Electron map- n: "
 					+ s.getParent().getParent().getParent().getQuantNumber()
 					+ " l: " + s.getParent().getParent().getQuantNumber()
 					+ " m: " + s.getParent().getQuantNumber() + " s: "
-					+ s.getQuantNumber() + " tenant: " + s.e);
+					+ s.getQuantNumber() + " tenant: " + s.getE());
 		}
 
 	}

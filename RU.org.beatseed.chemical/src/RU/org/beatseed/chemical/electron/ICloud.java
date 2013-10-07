@@ -15,7 +15,7 @@ public interface ICloud {
 
 	public void showEMap();
 
-	public void showECloud();
+	public void showCloud();
 
 	void showCloud(Predicate<S> tester,Function<S,String>mapper,Consumer<String> block);
 

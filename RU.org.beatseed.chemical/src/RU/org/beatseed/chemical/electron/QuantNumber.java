@@ -2,21 +2,21 @@ package RU.org.beatseed.chemical.electron;
 
 import java.util.LinkedList;
 
-import RU.org.beatseed.chemical.electron.Cloud.EnergyTypeEnum;
+import RU.org.beatseed.chemical.electron.Orbital.EnergyTypeEnum;
+
+
 
 public class QuantNumber<T> implements IQuantNumber<T>,
 		Comparable<QuantNumber<? extends Number>> {
-	IQuantNumber<Integer> parent;
 
-	protected EnergyTypeEnum quantNumberType;
-	protected LinkedList<QuantNumber<? extends Number>> childs;
-	protected QuantNumberInt<T> quantNumberO;
+	private IQuantNumber<Integer> parent;
+	private LinkedList<QuantNumber<? extends Number>> childs;
+	private QuantNumberInt<T> quantNumberO;
 
-	QuantNumber(IQuantNumber<Integer> parent, T number) {
+	protected QuantNumber(IQuantNumber<Integer> parent, T number) {
 		// quantNumber = number;
 		childs = new LinkedList<QuantNumber<? extends Number>>();
 		this.parent = parent;
-
 		quantNumberO = new QuantNumberInt<T>();
 		quantNumberO.set(number);
 	}
@@ -39,13 +39,11 @@ public class QuantNumber<T> implements IQuantNumber<T>,
 
 	@Override
 	public IQuantNumber<Integer> getParent() {
-
 		return parent;
 	}
 
 	@Override
 	public int compareTo(QuantNumber<? extends Number> o) {
-
 		QuantNumber<? extends Number> entry = o;
 		@SuppressWarnings("unchecked")
 		int result = ((QuantNumber<? extends Number>) this).getQuantNumber()
@@ -55,5 +53,7 @@ public class QuantNumber<T> implements IQuantNumber<T>,
 		}
 		return 0;
 	}
-
+protected LinkedList<QuantNumber<? extends Number>> getChilds(){
+	return childs;
+}
 }

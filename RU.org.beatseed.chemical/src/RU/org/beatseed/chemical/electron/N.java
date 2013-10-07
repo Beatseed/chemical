@@ -1,6 +1,6 @@
 package RU.org.beatseed.chemical.electron;
 
-import RU.org.beatseed.chemical.electron.Cloud.EnergyTypeEnum;
+
 
 /*
  * n - главное квантовое число, уровень, соответствует номеру периода в периодической системе
@@ -16,7 +16,7 @@ public class N extends QuantNumber<Integer> implements IQuantNumber<Integer> {
 		super(null, number);
 		atomcloud = parent;
 		for (int i = 0; i < number; i++) {
-			childs.push(new L(this, i, EnergyTypeEnum.values().clone()[i]));
+			getChilds().push(new L(this, i, Orbital.getEnergyType(i)));
 
 		}
 	}

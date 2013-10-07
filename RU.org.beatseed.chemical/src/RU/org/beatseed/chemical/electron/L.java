@@ -1,6 +1,8 @@
 package RU.org.beatseed.chemical.electron;
 
-import RU.org.beatseed.chemical.electron.Cloud.EnergyTypeEnum;
+import RU.org.beatseed.chemical.electron.Orbital.EnergyTypeEnum;
+
+
 
 /*
  * l - квантовое число, подуровень
@@ -11,18 +13,15 @@ import RU.org.beatseed.chemical.electron.Cloud.EnergyTypeEnum;
  */
 
 public class L extends QuantNumber<Integer> implements IQuantNumber<Integer> {
+	private EnergyTypeEnum quantNumberType;
 	L(IQuantNumber<Integer> parent, int number, EnergyTypeEnum numberType) {
 		super(parent, number);
-		childs.push(new M(this, 0));
-		quantNumberType = numberType;
-
-		for (int l = (int) Cloud.SublevelOrbitals.get(numberType) / 2; l != 0; l--) {
-
-			childs.push(new M(this, l));
-			childs.push(new M(this, -l));
-
+		getChilds().push(new M(this, 0));
+		quantNumberType=numberType;
+		for (int l = (int)Orbital.getOrbitalQuantity(numberType) / 2; l != 0; l--) {
+			getChilds().push(new M(this, l));
+			getChilds().push(new M(this, -l));
 		}
-
 	}
 
 }
